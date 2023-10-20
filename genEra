@@ -1390,7 +1390,7 @@ if [ $THREADS -gt 1 ]; then
 
 
 		merger() {
-			cat ${1}/ind_split/*_split_query_${2} 1>${1}/tmp_${2}.bout 2>/dev/null >  ;
+			cat ${1}/ind_split/*_split_query_${2} 1>${1}/tmp_${2}.bout 2>/dev/null ;
 		}
 		export -f merger
 
