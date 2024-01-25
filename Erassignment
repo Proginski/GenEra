@@ -51,7 +51,7 @@ for GENE in $(cat ${TMP_PATH}/tmp_gene_list); do
 	# Extract all the non-redundant taxids of the subject matches and extract their corresponding phylostrata. Limit the taxonomic search against sequences contained in the oldest phylostratum of the query organism
 	# awk -v GENE="$GENE" '{ if ($1 == GENE) print $NF }' ${TMP_PATH}/tmp_${GENE}.bout | sort -u -T ${TMP_PATH} | sed '/^[[:space:]]*$/d' | awk -F "," 'FNR==NR{ a[$1]=$0;next } ($1 in a)' - ${NCBITAX} | grep "$OLDEST" > ${TMP_PATH}/tmp_phylostrata
 	# $1 is necessarily egal to GENE now
-	awk -F"\t" '(!($NF in data)){print $NF; data[$NF]=1}' ${TMP_PATH}/tmp_${GENE}.bout | sed '/^[[:space:]]*$/d' | awk -F "," 'FNR==NR{ a[$1]=$0;next } ($1 in a)' - ${NCBITAX} | grep "$OLDEST" > ${TMP_PATH}/tmp_phylostrata
+	awk -F"\t" '(!($NF in data)){print $NF; data[$NF]=1}' ${TMP_PATH}/tmp_${GENE}.bout | sed 's/;/\n/g' | sed '/^[[:space:]]*$/d' | awk -F "," 'FNR==NR{ a[$1]=$0;next } ($1 in a)' - ${NCBITAX} | grep "$OLDEST" > ${TMP_PATH}/tmp_phylostrata
 
 	if [ -s ${TMP_PATH}/tmp_phylostrata ]; then
 
