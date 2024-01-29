@@ -256,7 +256,7 @@ if [[ -f ${DIVERGENCE} ]]; then
 
 fi
 
-echo "genEra v${VERSION} (C) Max Planck Society for the Advancement of Science"
+echo "Adapted from genEra v${VERSION} (C) Max Planck Society for the Advancement of Science"
 echo "Starting time of run:"
 date
 
